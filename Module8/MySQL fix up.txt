@@ -1,0 +1,9 @@
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'QAZwsx22!!22'
+
+
+C:\Users\jorda\OneDrive\Documents\DatabaseHW\Module8
+
+source /home/rkrasso/csd/csd-310/module_7/db_init.sql
+
+source C:\Users\jorda\OneDrive\Documents\DatabaseHW\Module8\db_init.sql
+
