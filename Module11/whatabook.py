@@ -5,11 +5,13 @@ def show_greeting():
     print()
     print("Welcome to WhatABook")
 
+# displays the exit string upon selecting 4 from main menu
 def show_goodbye():
     print()
     print("Goodbye!!!")
     print()
 
+# displays main menu options
 def show_menu():
     print()
     print("1. View Books")
@@ -18,6 +20,7 @@ def show_menu():
     print("4. Exit Program")
     print()
     
+# displays the location information 1 store only at this point
 def show_locations(_cursor):
     sql_text = 'SELECT store_id, locale FROM store;'
     _cursor.execute(sql_text)
@@ -26,6 +29,7 @@ def show_locations(_cursor):
     for location in locations:
         print(f"Store ID: {location[0]}, Location: {location[1]}")
 
+# present available books of main menu
 def show_books(_cursor):
     sql_text = 'SELECT book_id, book_name, details, author FROM book;'
     _cursor.execute(sql_text)
@@ -34,6 +38,7 @@ def show_books(_cursor):
     for book in books:
         print(f"Book ID: {book[0]}, Title: {book[1]}, Details: {book[2]}, Author: {book[3]}")
 
+# validate the user account exists
 def validate_user(user_id, _cursor):
     sql_text = f"""
     SELECT COUNT(*) AS user_count 
@@ -49,6 +54,7 @@ def validate_user(user_id, _cursor):
             print("User not found!!!!")
             return False 
 
+#showing account info after validation
 def show_account_menu():
     print()
     print("1. Wishlist")
@@ -56,6 +62,7 @@ def show_account_menu():
     print("3. Main Menu")
     print()
 
+# displays the wishlist
 def show_wishlist(user_id, _cursor):
     sql_text = f"""
     SELECT B.book_id, B.book_name, B.details, B.author
@@ -69,6 +76,7 @@ def show_wishlist(user_id, _cursor):
     for result in results:
         print(f"Book ID: {result[0]}, Title: {result[1]}, Details: {result[2]}, Author: {result[3]}")
 
+# for showing available books
 def show_available_books(user_id, _cursor):
     sql_text = f"""
 	SELECT book_id, book_name, details, author 
@@ -85,6 +93,7 @@ def show_available_books(user_id, _cursor):
         print(f"Book ID: {book[0]}, Title: {book[1]}, Details: {book[2]}, Author: {book[3]}")
     print()
 
+# adds function to allow adding items to wishlist
 def add_book_to_wishlist(user_id, book_id, _db, _cursor):
     sql_text = f"""
     INSERT INTO wishlist (user_id, book_id) VALUES ('{user_id}', '{book_id}');
@@ -92,6 +101,7 @@ def add_book_to_wishlist(user_id, book_id, _db, _cursor):
     _cursor.execute(sql_text)
     _db.commit()
 
+# main body
 def main():
 
     config = {
